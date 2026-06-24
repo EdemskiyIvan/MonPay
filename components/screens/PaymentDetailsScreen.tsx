@@ -52,7 +52,7 @@ export default function PaymentDetailsScreen({ project, onNavigate }: Props) {
       {/* Services */}
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         {project.services.map(service => (
-          <ServiceCard key={service.id} service={service} showDescription />
+          <ServiceCard key={service.id} service={service} />
         ))}
       </div>
 
