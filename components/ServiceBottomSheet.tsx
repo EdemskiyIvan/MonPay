@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { X, Download, Copy, Check, Eye, EyeOff, ExternalLink } from "lucide-react";
+import { X, Download, Copy, Check, Eye, EyeOff, ExternalLink, ShieldAlert } from "lucide-react";
 import { Service } from "@/lib/mockData";
+import { ProviderLogo } from "@/components/ServiceCard";
 
 interface Props {
   service: Service;
@@ -63,16 +64,9 @@ export default function ServiceBottomSheet({ service, onClose }: Props) {
         </button>
 
         {/* Header */}
-        <div style={{ textAlign: "center", padding: "16px 20px 24px" }}>
-          <div style={{
-            width: 72, height: 72, borderRadius: 18,
-            background: service.providerColor,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            margin: "0 auto 14px",
-            color: "#fff", fontWeight: 700, fontSize: 28,
-            boxShadow: `0 8px 24px ${service.providerColor}44`,
-          }}>
-            {service.provider[0]}
+        <div style={{ textAlign: "center", padding: "16px 20px 20px" }}>
+          <div style={{ margin: "0 auto 14px", width: 72, height: 72 }}>
+            <ProviderLogo service={service} size={72} />
           </div>
           <div style={{ fontSize: 18, fontWeight: 700, color: "#111827" }}>{service.provider}</div>
           <div style={{ fontSize: 13, color: "#9CA3AF", marginTop: 4 }}>{service.name}</div>
@@ -84,6 +78,18 @@ export default function ServiceBottomSheet({ service, onClose }: Props) {
               ≈ ${service.usdAmount} · по курсу на день оплаты
             </div>
           )}
+        </div>
+
+        {/* Description */}
+        <div style={{ padding: "0 16px 12px" }}>
+          <div style={{ background: "#F9FAFB", border: "1px solid #E5E7EB", borderRadius: 14, padding: "14px 16px" }}>
+            <div style={{ fontSize: 12, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 6 }}>
+              Зачем это нужно
+            </div>
+            <p style={{ fontSize: 14, color: "#374151", lineHeight: 1.6, margin: 0 }}>
+              {service.description}
+            </p>
+          </div>
         </div>
 
         {/* Documents */}
@@ -121,6 +127,19 @@ export default function ServiceBottomSheet({ service, onClose }: Props) {
         {/* Credentials */}
         {hasCredentials && (
           <div style={{ padding: "0 16px" }}>
+            {/* Warning */}
+            <div style={{
+              background: "#FFFBEB", border: "1px solid #FDE68A",
+              borderRadius: 12, padding: "12px 14px",
+              display: "flex", gap: 10, alignItems: "flex-start",
+              marginBottom: 10,
+            }}>
+              <ShieldAlert size={16} color="#D97706" style={{ flexShrink: 0, marginTop: 1 }} />
+              <p style={{ fontSize: 13, color: "#92400E", lineHeight: 1.5, margin: 0 }}>
+                Эти данные только для просмотра. Не меняйте ничего самостоятельно — любое изменение может нарушить работу платформы. Если нужна помощь, напишите нам — мы всё сделаем безопасно.
+              </p>
+            </div>
+
             <div style={{ background: "#F9FAFB", border: "1px solid #E5E7EB", borderRadius: 14, overflow: "hidden" }}>
               <div style={{ padding: "14px 16px", borderBottom: "1px solid #E5E7EB" }}>
                 <div style={{ fontWeight: 600, fontSize: 14, color: "#111827" }}>Доступы</div>

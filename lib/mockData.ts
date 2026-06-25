@@ -13,6 +13,7 @@ export interface Service {
   name: string;
   provider: string;
   providerColor: string;
+  logoUrl?: string;
   price: number;
   currency: "rub" | "usd";
   usdAmount?: number;
@@ -64,6 +65,7 @@ export const initialProject: ProjectState = {
       name: "Хостинг",
       provider: "Hetzner Cloud",
       providerColor: "#D72B2B",
+      logoUrl: "https://www.google.com/s2/favicons?domain=hetzner.com&sz=64",
       price: 8500,
       currency: "rub",
       criticality: "high",
@@ -79,6 +81,7 @@ export const initialProject: ProjectState = {
       name: "Корпоративная почта",
       provider: "Яндекс 360",
       providerColor: "#FF0000",
+      logoUrl: "https://www.google.com/s2/favicons?domain=360.yandex.ru&sz=64",
       price: 3240,
       currency: "rub",
       criticality: "medium",
@@ -94,6 +97,7 @@ export const initialProject: ProjectState = {
       name: "Платёжный API",
       provider: "Stripe",
       providerColor: "#635BFF",
+      logoUrl: "https://www.google.com/s2/favicons?domain=stripe.com&sz=64",
       price: 7000,
       currency: "usd",
       usdAmount: 59,
@@ -110,6 +114,7 @@ export const initialProject: ProjectState = {
       name: "Управление инфраструктурой",
       provider: "MonPay",
       providerColor: "#4F7DF3",
+      logoUrl: "/favicon.svg",
       price: 3000,
       currency: "rub",
       criticality: "low",
