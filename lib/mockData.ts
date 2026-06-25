@@ -2,6 +2,12 @@ export type Criticality = "high" | "medium" | "low";
 export type StatusLevel = "safe" | "attention" | "warning" | "critical";
 export type Screen = "dashboard" | "details" | "payment" | "success" | "notifications";
 
+export interface ServiceCredential {
+  label: string;
+  value: string;
+  type: "url" | "email" | "password" | "text";
+}
+
 export interface Service {
   id: string;
   name: string;
@@ -12,6 +18,7 @@ export interface Service {
   usdAmount?: number;
   criticality: Criticality;
   description: string;
+  credentials?: ServiceCredential[];
 }
 
 export interface ProjectState {
@@ -61,6 +68,11 @@ export const initialProject: ProjectState = {
       currency: "rub",
       criticality: "high",
       description: "Сервер, на котором работает платформа, база данных и личный кабинет дилеров.",
+      credentials: [
+        { label: "Консоль", value: "console.hetzner.cloud", type: "url" },
+        { label: "Email", value: "admin@dealerplatform.ru", type: "email" },
+        { label: "Пароль", value: "Htz#Dlr2024!", type: "password" },
+      ],
     },
     {
       id: "mail",
@@ -71,6 +83,11 @@ export const initialProject: ProjectState = {
       currency: "rub",
       criticality: "medium",
       description: "Email-адреса сотрудников, общий диск и инструменты команды.",
+      credentials: [
+        { label: "Панель управления", value: "admin.yandex.ru", type: "url" },
+        { label: "Email", value: "admin@dealerplatform.ru", type: "email" },
+        { label: "Пароль", value: "Yndx360!Dlr", type: "password" },
+      ],
     },
     {
       id: "api",
@@ -82,6 +99,11 @@ export const initialProject: ProjectState = {
       usdAmount: 59,
       criticality: "high",
       description: "Приём онлайн-платежей от клиентов внутри платформы. Оплата в USD — сумма может меняться с курсом.",
+      credentials: [
+        { label: "Dashboard", value: "dashboard.stripe.com", type: "url" },
+        { label: "Email", value: "billing@dealerplatform.ru", type: "email" },
+        { label: "API ключ", value: "sk_live_4xKRn8mQpTzW2vBd", type: "password" },
+      ],
     },
     {
       id: "mgmt",
